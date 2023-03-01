@@ -3,6 +3,7 @@ using System;
 using InvoiceApp.API.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InvoiceApp.API.Migrations
 {
     [DbContext(typeof(InvoiceAppDBContext))]
-    partial class InvoiceAppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230301182236_update2")]
+    partial class update2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.3");
@@ -49,12 +52,12 @@ namespace InvoiceApp.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("InvoiceHeaderId")
+                    b.Property<int?>("InvoiceHeaderId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("InvoiceLineId")
                         .HasColumnType("INTEGER")
-                        .HasAnnotation("Relational:JsonPropertyName", "Id");
+                        .HasAnnotation("Relational:JsonPropertyName", "id");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -80,15 +83,13 @@ namespace InvoiceApp.API.Migrations
             modelBuilder.Entity("InvoiceApp.API.Model.InvoiceLine", b =>
                 {
                     b.HasOne("InvoiceApp.API.Model.InvoiceHeader", null)
-                        .WithMany("InvoiceLine")
-                        .HasForeignKey("InvoiceHeaderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("InvoiceLines")
+                        .HasForeignKey("InvoiceHeaderId");
                 });
 
             modelBuilder.Entity("InvoiceApp.API.Model.InvoiceHeader", b =>
                 {
-                    b.Navigation("InvoiceLine");
+                    b.Navigation("InvoiceLines");
                 });
 #pragma warning restore 612, 618
         }

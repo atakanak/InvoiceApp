@@ -7,7 +7,6 @@ public class InvoiceAppDBContext : DbContext
 {
     public InvoiceAppDBContext(DbContextOptions<InvoiceAppDBContext> options) : base(options)
     {
-        
     }
 
     public DbSet<InvoiceHeader> InvoicesHeaders => Set<InvoiceHeader>();
