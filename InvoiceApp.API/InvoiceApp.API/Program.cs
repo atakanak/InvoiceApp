@@ -7,9 +7,14 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddCors(options => options.AddPolicy(name: "InvoiceAppOrigins",
+    policy => { policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader(); }
+));
+
 builder.Services.AddDbContext<InvoiceAppDBContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
-); 
+);
 
 var app = builder.Build();
 
@@ -20,6 +25,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("InvoiceAppOrigins");
 
 app.UseAuthorization();
 
