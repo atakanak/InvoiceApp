@@ -40,7 +40,7 @@ public class InvoiceController : ControllerBase
         try
         {
             Invoice invoice = JsonSerializer.Deserialize<Invoice>(file);
-            if (_context.InvoicesHeaders.Any(x => x.InvoiceId == invoice.InvoiceHeader.InvoiceId))
+            if (_context.InvoicesHeaders.Any(x => x.InvoiceId != invoice.InvoiceHeader.InvoiceId))
             {
                 invoice.InvoiceHeader.InvoiceLine = invoice.InvoiceLine;
                 _context.InvoicesHeaders.Add(invoice.InvoiceHeader);
