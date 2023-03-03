@@ -7,9 +7,5 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InvoiceUploadComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void { }
 }

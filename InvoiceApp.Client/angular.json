@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SovosTestCase.Client": {
+    "InvoiceApp.Client": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "SovosTestCase.Client:build:production"
+              "browserTarget": "InvoiceApp.Client:build:production"
             },
             "development": {
-              "browserTarget": "SovosTestCase.Client:build:development"
+              "browserTarget": "InvoiceApp.Client:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "SovosTestCase.Client:build"
+            "browserTarget": "InvoiceApp.Client:build"
           }
         },
         "test": {

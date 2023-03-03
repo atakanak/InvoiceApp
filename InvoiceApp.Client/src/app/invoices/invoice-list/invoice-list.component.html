@@ -1,50 +1,41 @@
-<app-invoice-upload></app-invoice-upload>
 
+<div class="p-5 h-screen">
 
-<div class="p-5 h-screen bg-gray-100">
-    <h1 class="text-xl mb-5 font-bold">
-        Uploaded Invoices
-    </h1>
+    <div class="container mx-auto">
+        <div class="flex items-center justify-between align-middle py-4 text-center w-full mt-5">
+            <h1 class="text-xl font-bold text-center w-full">
+                Uploaded Invoices
+            </h1>
+        </div>
 
-    <div class="overflow-auto rounded-lg shadow">
-        <table class="w-full">
-            <thead class="bg-gray-50 border-b-2 border-gray-200">
-                <tr>
-                    <td class="p-3 text-sm font-semibold tracking-wide text-left">Number</td>
-                    <td class="p-3 text-sm font-semibold tracking-wide text-left">ID</td>
-                    <td class="p-3 text-sm font-semibold tracking-wide text-left">Sender Name</td>
-                    <td class="p-3 text-sm font-semibold tracking-wide text-left">Receiver Name</td>
-                    <td class="p-3 text-sm font-semibold tracking-wide text-left">Date</td>
-                    <td class="p-3 text-sm font-semibold tracking-wide text-left">Actions</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="bg-white">
-                    <td class="p-3 text-sm text-gray-700">1</td>
-                    <td class="p-3 text-sm text-gray-700">
-                        <a href="#" class="font-bold text-blue-500 hover:underline">SVS202300000002</a>
-                    </td>
-                    <td class="p-3 text-sm text-gray-700">Sovos</td>
-                    <td class="p-3 text-sm text-gray-700">Atakan</td>
-                    <td class="p-3 text-sm text-gray-700">2023</td>
-                    <td class="p-3 text-sm">
-                        <a href="#" class="text-sm text-green-600 hover:underline font-bold">View</a>
-                    </td>
-                </tr>
-                <tr class="bg-white">
-                    <td class="p-3 text-sm text-gray-700">2</td>
+        <div class="overflow-auto rounded-lg shadow">
+            <table class="w-full">
+                <thead class="bg-gray-50 border-b-2 border-gray-200">
+                    <tr>
+                        <td class="p-3 text-sm font-semibold tracking-wide text-left">Number</td>
+                        <td class="p-3 text-sm font-semibold tracking-wide text-left">ID</td>
+                        <td class="p-3 text-sm font-semibold tracking-wide text-left">Sender Name</td>
+                        <td class="p-3 text-sm font-semibold tracking-wide text-left">Receiver Name</td>
+                        <td class="p-3 text-sm font-semibold tracking-wide text-left">Date</td>
+                        <td class="p-3 text-sm font-semibold tracking-wide text-left">Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let invoice of invoices" class="bg-white">
+                        <td class="p-3 text-sm text-gray-700">{{ invoice.id }}</td>
+                        <td class="p-3 text-sm text-gray-700">
+                            <a href="#" class="font-bold text-blue-500 hover:underline">{{ invoice.invoiceId }}</a>
+                        </td>
+                        <td class="p-3 text-sm text-gray-700">{{ invoice.senderTitle }}</td>
+                        <td class="p-3 text-sm text-gray-700">{{ invoice.receiverTitle }}</td>
+                        <td class="p-3 text-sm text-gray-700">{{ invoice.date }}</td>
+                        <td class="p-3 text-sm">
+                            <a href="#" class="text-sm text-green-600 hover:underline font-bold">View</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-                    <td class="p-3 text-sm text-gray-700">
-                        <a href="#" class="font-bold text-blue-500 hover:underline">SVS202300000002</a>
-                    </td>
-                    <td class="p-3 text-sm text-gray-700">Sovos</td>
-                    <td class="p-3 text-sm text-gray-700">Atakan</td>
-                    <td class="p-3 text-sm text-gray-700">2023</td>
-                    <td class="p-3 text-sm">
-                        <a href="#" class="text-sm text-green-600 hover:underline font-bold">View</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </div>

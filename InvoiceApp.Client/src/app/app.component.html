@@ -1,3 +1,5 @@
-<div class="h-screen">
+<div class="h-screen bg-gray-100">
+  <app-nav (onShowUpload)="toggleUpload = !toggleUpload"></app-nav>
+  <app-invoice-upload *ngIf="toggleUpload"></app-invoice-upload>
   <app-invoice-list class="h-100"></app-invoice-list>
 </div>
