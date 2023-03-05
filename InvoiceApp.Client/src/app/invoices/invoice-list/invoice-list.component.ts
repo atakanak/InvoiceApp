@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { InvoiceService } from 'src/services/invoice.service';
 
 @Component({
@@ -7,15 +7,41 @@ import { InvoiceService } from 'src/services/invoice.service';
   styleUrls: ['./invoice-list.component.css']
 })
 export class InvoiceListComponent implements OnInit {
+  @Input() refreshGrid: boolean = false;
   invoices: any;
+  showModal = false;
+  details: any;
 
-  constructor(private _apiservie: InvoiceService) {
 
-  }
+  constructor(private _apiservice: InvoiceService) { }
+
   ngOnInit(): void {
+    this.getInvoicesList();
+  }
 
-    this._apiservie.getInvoiceList().subscribe(res => {
+  getInvoicesList() {
+    this._apiservice.getInvoiceList().subscribe(res => {
       this.invoices = res;
     });
   }
+
+  getDetails(id: any) {
+    this.showModal = !this.showModal;
+
+    this._apiservice.getInvoiceDetail(id).subscribe(res => {
+      this.details = res;
+    });
+  }
+
+  toggleModal() {
+    this.showModal = !this.showModal;
+  }
+
+
+  ngOnChanges() {
+    if (this.refreshGrid) {
+      this.getInvoicesList();
+    }
+  }
 }
+

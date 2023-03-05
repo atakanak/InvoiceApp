@@ -7,12 +7,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class NavComponent implements OnInit {
   
-  @Output() onShowUpload = new EventEmitter<boolean>();
-
-  showUpload() {
-    this.onShowUpload.emit(true);
-  }
-
   ngOnInit(): void {
   }
 

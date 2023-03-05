@@ -7,31 +7,30 @@ import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.compo
 import { InvoiceUploadComponent } from './invoices/invoice-upload/invoice-upload.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './layouts/nav/nav.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InvoiceModalComponent } from './invoices/invoice-modal/invoice-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     InvoiceListComponent,
     InvoiceUploadComponent,
-    NavComponent
+    NavComponent,
+    InvoiceModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    FormsModule, // required for input file change detection
+    ReactiveFormsModule,
+    HttpClientModule, // this is required for the actual http request
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-
-  public show: boolean = false;
-
   ngOnInit() { }
-
-  showFileUpload() {
-    this.show = !this.show;
-
-  }
 }
 

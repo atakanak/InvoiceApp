@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,15 +6,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'InvoiceApp.Client';
+  refreshGrid : boolean = false;
 
-  toggleUpload = false;
+  ngOnInit() { }
 
-  constructor() {
-
+  refreshList($event: any) {
+    this.refreshGrid = true;
   }
-
-  ngOnInit() {
-
-  }
-
 }

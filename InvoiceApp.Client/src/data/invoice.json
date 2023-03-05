@@ -1,0 +1,31 @@
+{
+    "InvoiceHeader": {
+        "InvoiceId": "SVS202322223136",
+        "SenderTitle": "Amazon",
+        "ReceiverTitle": "Atakan AK",
+        "Date": "2023-01-11"
+    },
+    "InvoiceLine": [
+        {
+            "Id": 1,
+            "Name": "Iphone",
+            "Quantity": 5,
+            "UnitCode": "Adet",
+            "UnitPrice": 10
+        },
+        {
+            "Id": 2,
+            "Name": "Domates",
+            "Quantity": 2,
+            "UnitCode": "Kilogram",
+            "UnitPrice": 3
+        },
+        {
+            "Id": 3,
+            "Name": "Kalem",
+            "Quantity": 25,
+            "UnitCode": "Adet",
+            "UnitPrice": 5
+        }
+    ]
+}
