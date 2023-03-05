@@ -16,5 +16,5 @@ public class InvoiceHeader
     public DateTime Date { get; set; }
     
     [JsonIgnore]
-    public List<InvoiceLine> InvoiceLine { get; set; }
+    public List<InvoiceLine>? InvoiceLine { get; set; }
 }

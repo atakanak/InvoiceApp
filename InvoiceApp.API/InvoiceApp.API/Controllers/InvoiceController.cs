@@ -25,34 +25,41 @@ public class InvoiceController : ControllerBase
 
     [HttpGet]
     [Route("api/[controller]/GetInvoiceDetail/{id}")]
-    public async Task<List<InvoiceLine>> GetInvoiceDetail(string id)
+    public async Task<Invoice> GetInvoiceDetail(string id)
     {
         return await _context.InvoicesHeaders
             .Where(x => x.InvoiceId == id)
-            .Select(x => x.InvoiceLine)
+            .Select(x => new Invoice
+            {
+                InvoiceHeader = new InvoiceHeader
+                {
+                    InvoiceId = x.InvoiceId,
+                    SenderTitle = x.SenderTitle,
+                    ReceiverTitle = x.ReceiverTitle,
+                    Date = x.Date
+                },
+                InvoiceLine = x.InvoiceLine
+            })
             .FirstOrDefaultAsync();
     }
 
     [HttpPost]
     [Route("api/[controller]/UploadInvoice")]
-    public async Task<IActionResult> UploadInvoice(byte[] file)
+    public async Task<IActionResult> UploadInvoice([FromBody] Invoice invoice)
     {
         try
         {
-            Invoice invoice = JsonSerializer.Deserialize<Invoice>(file);
-            if (_context.InvoicesHeaders.Any(x => x.InvoiceId != invoice.InvoiceHeader.InvoiceId))
-            {
-                invoice.InvoiceHeader.InvoiceLine = invoice.InvoiceLine;
-                _context.InvoicesHeaders.Add(invoice.InvoiceHeader);
-            
-                await _context.SaveChangesAsync();
-            
-                return Ok();
-            }
-            else
+            if (_context.InvoicesHeaders.Any(x => x.InvoiceId == invoice.InvoiceHeader.InvoiceId))
             {
                 return BadRequest("Böyle bir fatura var");
             }
+
+            invoice.InvoiceHeader.InvoiceLine = invoice.InvoiceLine;
+            _context.InvoicesHeaders.Add(invoice.InvoiceHeader);
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
         catch (Exception e)
         {
