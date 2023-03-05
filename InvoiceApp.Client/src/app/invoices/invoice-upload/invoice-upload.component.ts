@@ -26,10 +26,12 @@ export class InvoiceUploadComponent implements OnInit {
   uploadFile() {
     if (this.file) {
       this._apiservice.uploadInvoice(this.file).subscribe(
-        data => { },
+        data => {
+          this.refreshList.emit("refresh");
+        },
         error => alert(error.error),
       );
-      this.refreshList.emit("refresh");
+
     } else {
       alert("Please select a file first")
     }

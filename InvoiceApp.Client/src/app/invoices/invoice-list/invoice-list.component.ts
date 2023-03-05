@@ -21,6 +21,7 @@ export class InvoiceListComponent implements OnInit {
 
   getInvoicesList() {
     this._apiservice.getInvoiceList().subscribe(res => {
+      console.log(31);
       this.invoices = res;
     });
   }
@@ -40,6 +41,7 @@ export class InvoiceListComponent implements OnInit {
 
   ngOnChanges() {
     if (this.refreshGrid) {
+      console.log(123123123);
       this.getInvoicesList();
     }
   }

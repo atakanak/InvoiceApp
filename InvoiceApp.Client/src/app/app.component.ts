@@ -11,6 +11,7 @@ export class AppComponent {
   ngOnInit() { }
 
   refreshList($event: any) {
+    console.log('refresh at lan', $event)
     this.refreshGrid = true;
   }
 }

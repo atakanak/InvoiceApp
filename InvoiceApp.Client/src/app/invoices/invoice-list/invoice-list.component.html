@@ -23,7 +23,7 @@
                     <tr *ngFor="let invoice of invoices; let index = index;" class="{{ index % 2 === 1 ? 'bg-gray-100' : 'bg-white' }}">
                         <td class="p-3 text-sm text-gray-700">{{ invoice.id }}</td>
                         <td class="p-3 text-sm text-gray-700">
-                            <a href="#" class="font-bold text-blue-500 hover:underline">{{ invoice.invoiceId }}</a>
+                            <button (click)="getDetails(invoice.invoiceId)" class="font-bold text-blue-500 hover:underline">{{ invoice.invoiceId }}</button>
                         </td>
                         <td class="p-3 text-sm text-gray-700">{{ invoice.senderTitle }}</td>
                         <td class="p-3 text-sm text-gray-700">{{ invoice.receiverTitle }}</td>
@@ -46,7 +46,7 @@
             class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                 <h3 class="text-3xl font-semibold">
-                    svs12312312312
+                    {{ details.invoiceHeader.invoiceId }}
                 </h3>
             </div>
             <div class="relative p-6 flex justify-center">
@@ -88,9 +88,9 @@
                             </td>
                             <td class="p-3 text-sm text-gray-700">{{ detail.quantity }}</td>
                             <td class="p-3 text-sm text-gray-700">{{ detail.unitCode }}</td>
-                            <td class="p-3 text-sm text-gray-700">{{ detail.unitPrice }}</td>
+                            <td class="p-3 text-sm text-gray-700">{{ detail.unitPrice }}₺</td>
                             <td class="p-3 text-sm">
-                                {{ detail.quantity * detail.unitPrice }}
+                                {{ detail.quantity * detail.unitPrice }}₺
                             </td>
                         </tr>
                     </tbody>
